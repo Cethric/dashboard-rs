@@ -13,14 +13,26 @@ jobs:
   build:
     strategy:
       matrix:
-        platform: [macos-latest, ubuntu-latest, windows-latest]
+        platform: [ macos-latest, ubuntu-latest, windows-latest ]
     runs-on: ${{ matrix.platform }}
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Install Dependencies
-      run: cargo install trunk tauri-cli && npm i
-    - name: Tauri Build
-      run: cargo tauri build
-    - name: Run tests
-      run: cargo test --verbose
+      - uses: actions/checkout@v3
+      - name: Install dependencies (ubuntu only)
+        if: matrix.platform == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+      - name: Install NPM Dependencies
+        run: npm i
+      - name: Install Cargo Dependencies
+        run: cargo install trunk tauri-cli
+      - name: Tauri Build
+        run: cargo tauri build
+      - name: Run tests
+        run: cargo test --verbose
