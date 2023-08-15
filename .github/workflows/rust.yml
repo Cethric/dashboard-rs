@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Install Dependencies
-      run: cargo install trunk tauri
+      run: cargo install trunk tauri-cli
     - name: Tauri Build
       run: cargo tauri build
     - name: Run tests
