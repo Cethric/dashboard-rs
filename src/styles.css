@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@layer base {
+
+}
+
+/* This is a fix for older versions of chrome */
+.swap input {
+    visibility: hidden;
+}
+
+.sm\:btn-sm {
+
+}

@@ -1,0 +1,13 @@
+[build]
+#target = "wasm32-unknown-unknown"
+#target = "x86_64-pc-windows-msvc"
+
+[target.x86_64-unknown-linux-gnu]
+rustflags = ["--cfg=web_sys_unstable_apis"]
+
+[target.wasm32-unknown-unknown]
+rustflags = ["--cfg=web_sys_unstable_apis"]
+#rustflags = ["-C", "target-feature=+mutable-globals", "--cfg=web_sys_unstable_apis"]
+
+[unstable]
+#build-std = []

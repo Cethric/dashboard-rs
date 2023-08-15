@@ -1,0 +1,31 @@
+[build]
+hash = true
+release = true
+target = "./index.html"
+
+[watch]
+watch = []
+ignore = ["./src-tauri", "./generated", "./generated/js", "./dist"]
+
+[tools]
+# Default dart-sass version to download.
+sass = "1.64.2"
+tailwindcss = "3.3.3"
+wasm_bindgen = "0.2.87"
+wasm_opt = "version_114"
+
+[serve]
+address = "127.0.0.1"
+port = 1420
+open = false
+
+[clean]
+# The output dir for all final assets.
+dist = "dist"
+# Optionally perform a cargo clean.
+cargo = false
+
+#[[hooks]]
+#stage = "post_build"
+#command = "sh"
+#command_arguments = ["-c", "cp ./target/stylers/main.css $TRUNK_STAGING_DIR/"]

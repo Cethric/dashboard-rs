@@ -1,0 +1,26 @@
+[package]
+name = "dashboard_rs"
+version = "0.0.0"
+edition = "2021"
+
+[dependencies]
+leptos = { version = "0.4", features = ["csr", "nightly"] }
+leptos_icons = { version = "0.0.15", features = ["serde", "macros", "BsGithub", "BsPower"] }
+leptos-use = { version = "0.6", features = ["serde"] }
+leptos_router = { version = "0.4", features = ["csr"] }
+stylers = { git = "https://github.com/abishekatp/stylers", branch = "main", package = "stylers", features = [] }
+serde = { version = "1.0", features = ["derive"] }
+serde-wasm-bindgen = { version = "0.5", features = [] }
+wasm-bindgen = { version = "0.2", features = ["serde-serialize", "serde"] }
+wasm-bindgen-futures = { version = "0.4", features = [] }
+js-sys = { version = "0.3", features = [] }
+console_error_panic_hook = { version = "0.1", features = [] }
+console_log = { version = "1.0", features = ["color", "wasm-bindgen"] }
+log = { version = "0.4", features = ["serde"] }
+components = { version = "0.1.0", path = "./components", features = [] }
+
+[build-dependencies]
+leptos-tiptap-build = { version = "0.2" }
+
+[workspace]
+members = ["src-tauri", "components"]

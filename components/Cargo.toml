@@ -1,0 +1,25 @@
+[package]
+name = "components"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+leptos = { version = "0.4", features = ["csr", "nightly", "wasm-bindgen"] }
+leptos_reactive = { version = "0.4", features = ["csr", "nightly"] }
+leptos_icons = { version = "0.0.15", features = ["serde", "macros", "BsGithub", "BsPower"] }
+leptos-use = { version = "0.6", features = ["serde"] }
+leptos_router = { version = "0.4", features = ["csr"] }
+stylers = { git = "https://github.com/abishekatp/stylers", branch = "main", package = "stylers", features = [] }
+serde = { version = "1.0", features = ["derive"] }
+serde-wasm-bindgen = { version = "0.5", features = [] }
+wasm-bindgen = { version = "0.2", features = ["serde-serialize", "serde"] }
+wasm-bindgen-futures = { version = "0.4", features = [] }
+js-sys = { version = "0.3", features = [] }
+log = { version = "0.4", features = ["serde"] }
+itertools = { version = "0.11", features = ["default"] }
+uuid = { version = "1.4.1", features = ["default", "wasm-bindgen", "fast-rng", "macro-diagnostics", "v4"] }
+
+[dev-dependencies]
+test-case = { version = "3.1", features = [] }

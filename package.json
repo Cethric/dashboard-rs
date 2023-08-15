@@ -1,0 +1,8 @@
+{
+  "packageManager": "npm",
+  "name": "dashboard-rs",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3",
+    "daisyui": "^3.5.1"
+  }
+}
