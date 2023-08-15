@@ -10,6 +10,7 @@ use crate::size::Size;
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum BadgeColourBase<T> {
     Colour(T),
+    Ghost(),
 }
 
 pub type BadgeColour = BadgeColourBase<Colour>;
@@ -23,6 +24,7 @@ impl ClassName for BadgeColour {
         String::from(match self {
             BadgeColour::Colour(Colour::Default) => "".to_string(),
             BadgeColour::Colour(color) => format!("badge-{}", color),
+            BadgeColour::Ghost() => "badge-ghost".to_string(),
         })
     }
 }
