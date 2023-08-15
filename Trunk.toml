@@ -5,7 +5,7 @@ target = "./index.html"
 
 [watch]
 watch = []
-ignore = ["./src-tauri", "./generated", "./generated/js", "./dist"]
+ignore = ["./src-tauri", "./generated", "./generated/js"]
 
 [tools]
 # Default dart-sass version to download.
