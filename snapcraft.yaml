@@ -5,12 +5,19 @@ description:
 base: core22
 confinement: strict
 parts:
+  rust-deps:
+    plugin: nil
+    override-pull: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   dashboard-rs:
     plugin: rust
     source: .
+    after:
+      - rust-deps
     stage-snaps:
       - ubuntu-frame
     build-packages:
+      - build-essential
+      - pkg-config
       - libgtk-3-dev
       - libwebkit2gtk-4.1-dev
       - libayatana-appindicator3-dev
@@ -24,6 +31,7 @@ parts:
       - librsvg2
       - libsoup-3.0
       - libjavascriptcoregtk-4.1
+    override-build: snapcraftctl build
 
 apps:
   dashboard-rs:
