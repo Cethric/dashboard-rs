@@ -1,0 +1,90 @@
+name: dashboard-rs
+summary: Rust Home Dashboard Frontend
+description:
+  The kiosk dashboard frontend for the Home Dashboard
+base: core22
+type: app
+version: git
+confinement: strict
+architectures:
+  - amd64
+
+plugs:
+  graphics-core22:
+    interface: content
+    target: $SNAP/graphics
+    default-provider: mesa-core22
+
+layout:
+  /usr/share/libdrm:
+    bind: $SNAP/graphics/libdrm
+  /usr/share/drirc.d:
+    symlink: $SNAP/graphics/drirc.d
+  /usr/share/X11/XErrorDB:
+    symlink: $SNAP/graphics/X11/XErrorDB
+  /usr/share/X11/locale:
+    symlink: $SNAP/graphics/X11/locale
+
+parts:
+  rust-deps:
+    plugin: nil
+    build-packages:
+      - curl
+    override-pull: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  dashboard-build:
+    plugin: rust
+    source: .
+    after:
+      - rust-deps
+    stage-snaps:
+      - ubuntu-frame
+    build-packages:
+      - build-essential
+      - pkg-config
+      - libgtk-3-dev
+      - libwebkit2gtk-4.1-dev
+      - libayatana-appindicator3-dev
+      - librsvg2-dev
+      - libsoup-3.0-dev
+      - libjavascriptcoregtk-4.1-dev
+    stage-packages:
+      - libgtk-3-0
+      - libwebkit2gtk-4.1-0
+      - libayatana-appindicator3-1
+      - librsvg2-2
+      - libsoup-3.0-0
+      - libjavascriptcoregtk-4.1-0
+    override-pull: |
+      snapcraftctl pull
+      cargo install trunk
+      cargo install tauri-cli
+    override-build: |
+      snapcraftctl build
+      cargo tauri build
+
+  dashboard-app:
+    plugin: dump
+    source-type: deb
+    source: target/release/bundle/deb/dashboard-rs_0.0.0_amd64.deb
+    after:
+      - dashboard-build
+
+  graphics-core22:
+    after: [ dashboard-app ]
+    source: https://github.com/MirServer/graphics-core22.git
+    plugin: dump
+    override-prime: |
+      craftctl default
+      ${CRAFT_PART_SRC}/bin/graphics-core22-cleanup mesa-core22 nvidia-core22
+    prime:
+      - bin/graphics-core22-wrapper
+
+apps:
+  dashboard-rs:
+    plugs: [ desktop, gsettings, opengl, wayland, x11, mount-observe, calendar-service ]
+    extensions:
+      - gnome
+    command-chain:
+      - bin/graphics-core22-wrapper
+    command: 'bin/dashboard-rs'
+    desktop: share/applications/dashboard-rs.desktop

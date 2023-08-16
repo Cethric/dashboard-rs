@@ -1,5 +1,5 @@
 [package]
-name = "dashboard_rs"
+name = "dashboard-ui"
 version = "0.0.0"
 edition = "2021"
 repository = "https://github.com/Cethric/dashboard-rs"
