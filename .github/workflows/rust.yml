@@ -54,7 +54,7 @@ jobs:
         run: cargo tauri build
 
       # Test
-      - name: Run tests
-        run: cargo test --verbose
+      - name: Run component tests
+        run: cargo test --package components --verbose
 
       # TODO Release

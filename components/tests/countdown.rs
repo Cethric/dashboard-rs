@@ -10,7 +10,7 @@ mod tests {
     pub fn test_countdown() {
         create_scope(create_runtime(), |cx| {
             let (value, _) = create_signal::<i32>(cx, 10);
-            let view = view! {cx, <Countdown value=value />};
+            let view = view! {cx, <Countdown value=MaybeSignal::Dynamic(value.derive_signal(cx)) />};
             assert_eq!(
                 view.render_to_string(cx),
                 format!(
