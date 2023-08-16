@@ -8,13 +8,12 @@ use crate::responsive::{Responsive, ResponsiveVec};
 use crate::size::Size;
 
 #[derive(Debug, Copy, Clone, PartialEq)]
-pub enum ButtonColourBase<T> {
-    Colour(T),
+pub enum ButtonColour {
+    Colour(Colour),
+    Glass(Colour),
     Ghost(),
     Link(),
 }
-
-pub type ButtonColour = ButtonColourBase<Colour>;
 
 impl ClassName for ButtonColour {
     fn has_class_name(self) -> bool {
@@ -25,6 +24,7 @@ impl ClassName for ButtonColour {
         String::from(match self {
             ButtonColour::Colour(Colour::Default) => "".to_string(),
             ButtonColour::Colour(color) => format!("btn-{}", color),
+            ButtonColour::Glass(color) => format!("btn-glass btn-{}", color),
             ButtonColour::Ghost() => "btn-ghost".to_string(),
             ButtonColour::Link() => "btn-link".to_string(),
         })
@@ -38,11 +38,9 @@ impl Display for ButtonColour {
 }
 
 #[derive(Debug, Copy, Clone, PartialEq)]
-pub enum ButtonSizeBase<T> {
-    Size(T),
+pub enum ButtonSize {
+    Size(Size),
 }
-
-pub type ButtonSize = ButtonSizeBase<Size>;
 
 impl ClassName for ButtonSize {
     fn has_class_name(self) -> bool {
@@ -62,6 +60,8 @@ impl Display for ButtonSize {
         fmt_class_name(self, f)
     }
 }
+
+pub type ResponsiveButtonSize = ResponsiveVec<Responsive<ButtonSize>>;
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum ButtonShape {
@@ -87,6 +87,8 @@ impl Display for ButtonShape {
         fmt_class_name(self, f)
     }
 }
+
+pub type ResponsiveButtonShape = ResponsiveVec<Responsive<ButtonShape>>;
 
 #[derive(Debug, Copy, Clone)]
 pub enum ButtonType {
@@ -118,15 +120,14 @@ pub fn Button(
     cx: Scope,
     #[prop(default = ButtonColour::Colour(Colour::Default))] colour: ButtonColour,
     #[prop(default = ButtonType::Default)] button_type: ButtonType,
-    #[prop(default=ResponsiveVec(vec![]))] size: ResponsiveVec<Responsive<ButtonSize>>,
-    #[prop(default=ResponsiveVec(vec![]))] shape: ResponsiveVec<Responsive<ButtonShape>>,
+    #[prop(default=ResponsiveVec(vec![]))] size: ResponsiveButtonSize,
+    #[prop(default=ResponsiveVec(vec![]))] shape: ResponsiveButtonShape,
     #[prop(default = false)] active: bool,
     #[prop(default = false)] outline: bool,
     #[prop(default = false)] wide: bool,
     #[prop(default = false)] block: bool,
     #[prop(default = false)] disabled: bool,
     #[prop(default = false)] no_animation: bool,
-    #[prop(default = false)] glass: bool,
     children: Children,
 ) -> impl IntoView {
     view! {cx,
@@ -134,14 +135,13 @@ pub fn Button(
         disabled=disabled
         class={
             format!(
-                "btn{}{}{}{}{}{}{}{}{}{}",
+                "btn{}{}{}{}{}{}{}{}{}",
                 if active {" btn-active"} else {""},
                 if outline {" btn-outline"} else {""},
                 if wide {" btn-wide"} else {""},
                 if block {" btn-block"} else {""},
                 if disabled {" btn-disabled"} else {""},
                 if no_animation {" no-animation"} else {""},
-                if glass {" glass"} else {""},
                 colour,
                 size,
                 shape,

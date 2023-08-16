@@ -3,6 +3,7 @@ use std::fmt::Display;
 use leptos::*;
 
 use crate::class_name::{fmt_class_name, ClassName};
+use crate::orientation::Orientation;
 use crate::responsive::{Responsive, ResponsiveVec};
 
 #[slot]
@@ -27,25 +28,24 @@ pub struct StatActions {
 }
 
 #[derive(Debug, Copy, Clone, PartialEq)]
-pub enum StatDirection {
-    Horizontal,
-    Vertical,
+pub enum StatOrientation {
+    Orientation(Orientation),
 }
 
-impl ClassName for StatDirection {
+impl ClassName for StatOrientation {
     fn has_class_name(self) -> bool {
-        true
+        self != StatOrientation::Orientation(Orientation::Default)
     }
 
     fn class_name(self) -> String {
-        match self {
-            StatDirection::Horizontal => "stat-vertical".to_string(),
-            StatDirection::Vertical => "stat-horizontal".to_string(),
-        }
+        String::from(match self {
+            StatOrientation::Orientation(Orientation::Default) => "".to_string(),
+            StatOrientation::Orientation(orientation) => format!("stat-{}", orientation),
+        })
     }
 }
 
-impl Display for StatDirection {
+impl Display for StatOrientation {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         fmt_class_name(self, f)
     }
@@ -74,8 +74,10 @@ pub fn Stat(
 #[component]
 pub fn Stats(
     cx: Scope,
-    #[prop(default = ResponsiveVec(vec![]))] direction: ResponsiveVec<Responsive<StatDirection>>,
+    #[prop(default = ResponsiveVec(vec![]))] orientation: ResponsiveVec<
+        Responsive<StatOrientation>,
+    >,
     children: Children,
 ) -> impl IntoView {
-    view! {cx, <div class=format!("stats{}", direction)>{children(cx)}</div>}
+    view! {cx, <div class=format!("stats{}", orientation)>{children(cx)}</div>}
 }

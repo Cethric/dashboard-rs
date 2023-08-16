@@ -8,12 +8,10 @@ use crate::responsive::{Responsive, ResponsiveVec};
 use crate::size::Size;
 
 #[derive(Debug, Copy, Clone, PartialEq)]
-pub enum BadgeColourBase<T> {
-    Colour(T),
+pub enum BadgeColour {
+    Colour(Colour),
     Ghost(),
 }
-
-pub type BadgeColour = BadgeColourBase<Colour>;
 
 impl ClassName for BadgeColour {
     fn has_class_name(self) -> bool {
@@ -36,11 +34,9 @@ impl Display for BadgeColour {
 }
 
 #[derive(Debug, Copy, Clone, PartialEq)]
-pub enum BadgeSizeBase<T> {
-    Size(T),
+pub enum BadgeSize {
+    Size(Size),
 }
-
-pub type BadgeSize = BadgeSizeBase<Size>;
 
 impl ClassName for BadgeSize {
     fn has_class_name(self) -> bool {
@@ -61,12 +57,14 @@ impl Display for BadgeSize {
     }
 }
 
+pub type ResponsiveBadgeSize = ResponsiveVec<Responsive<BadgeSize>>;
+
 #[component]
 pub fn Badge(
     cx: Scope,
     #[prop(default = false)] outline: bool,
     #[prop(default = BadgeColour::Colour(Colour::Default))] colour: BadgeColour,
-    #[prop(default = ResponsiveVec(vec![]))] size: ResponsiveVec<Responsive<BadgeSize>>,
+    #[prop(default = ResponsiveVec(vec![]))] size: ResponsiveBadgeSize,
     children: Children,
 ) -> impl IntoView {
     view! {cx,

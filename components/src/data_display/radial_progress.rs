@@ -3,7 +3,8 @@ use std::fmt::Display;
 use leptos::*;
 
 use crate::class_name::{fmt_class_name, ClassName};
-use crate::colour::{BackgroundColour, BorderColour, Colour};
+use crate::colour::{BorderColour, Colour};
+use crate::common::TextBackgroundColour;
 use crate::style::SizeUnit;
 
 #[derive(Debug, Copy, Clone, PartialEq)]
@@ -22,9 +23,8 @@ impl ClassName for RadialProgressColour {
         String::from(match self {
             RadialProgressColour::Colour(Colour::Default) => "".to_string(),
             RadialProgressColour::Colour(colour) => format!(
-                "{}{}border-4{}",
-                BackgroundColour::Colour(colour),
-                colour.to_content_colour(),
+                "{}border-4{}",
+                TextBackgroundColour::Colour(colour),
                 BorderColour::Colour(colour)
             ),
         })

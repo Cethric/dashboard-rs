@@ -100,11 +100,9 @@ impl Display for Colour {
 }
 
 #[derive(Debug, Copy, Clone, PartialEq)]
-pub enum BorderColourBase<T> {
-    Colour(T),
+pub enum BorderColour {
+    Colour(Colour),
 }
-
-pub type BorderColour = BorderColourBase<Colour>;
 
 impl ClassName for BorderColour {
     fn has_class_name(self) -> bool {
@@ -128,11 +126,9 @@ impl Display for BorderColour {
 }
 
 #[derive(Debug, Copy, Clone, PartialEq)]
-pub enum BackgroundColourBase<T> {
-    Colour(T),
+pub enum BackgroundColour {
+    Colour(Colour),
 }
-
-pub type BackgroundColour = BackgroundColourBase<Colour>;
 
 impl ClassName for BackgroundColour {
     fn has_class_name(self) -> bool {

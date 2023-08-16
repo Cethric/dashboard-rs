@@ -2,13 +2,12 @@ use std::fmt::Display;
 
 use crate::class_name::{fmt_class_name, ClassName};
 use crate::colour::Colour;
+use crate::size::Size;
 
 #[derive(Debug, Copy, Clone, PartialEq)]
-pub enum TextColourBase<T> {
-    Colour(T),
+pub enum TextColour {
+    Colour(Colour),
 }
-
-pub type TextColour = TextColourBase<Colour>;
 
 impl ClassName for TextColour {
     fn has_class_name(self) -> bool {
@@ -30,6 +29,51 @@ impl Display for TextColour {
 }
 
 #[derive(Debug, Copy, Clone, PartialEq)]
-pub enum TextContentColourBase<T> {
-    Colour(T),
+pub enum TextContentColour {
+    Colour(Colour),
+}
+
+impl ClassName for TextContentColour {
+    fn has_class_name(self) -> bool {
+        self != TextContentColour::Colour(Colour::Default)
+    }
+
+    fn class_name(self) -> String {
+        String::from(match self {
+            TextContentColour::Colour(Colour::Default) => "".to_string(),
+            TextContentColour::Colour(colour) => {
+                format!("text-{}", colour.to_content_colour())
+            }
+        })
+    }
+}
+
+impl Display for TextContentColour {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        fmt_class_name(self, f)
+    }
+}
+
+#[derive(Debug, Copy, Clone, PartialEq)]
+pub enum TextSize {
+    Size(Size),
+}
+
+impl ClassName for TextSize {
+    fn has_class_name(self) -> bool {
+        self != TextSize::Size(Size::Default)
+    }
+
+    fn class_name(self) -> String {
+        match self {
+            TextSize::Size(Size::Default) => "".to_string(),
+            TextSize::Size(size) => format!("text-{}", size),
+        }
+    }
+}
+
+impl Display for TextSize {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        fmt_class_name(self, f)
+    }
 }
