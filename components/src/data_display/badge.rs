@@ -19,11 +19,11 @@ impl ClassName for BadgeColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             BadgeColour::Colour(Colour::Default) => "".to_string(),
             BadgeColour::Colour(color) => format!("badge-{}", color),
             BadgeColour::Ghost() => "badge-ghost".to_string(),
-        })
+        }
     }
 }
 
@@ -44,10 +44,10 @@ impl ClassName for BadgeSize {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             BadgeSize::Size(Size::Default) => "".to_string(),
             BadgeSize::Size(size) => format!("badge-{}", size),
-        })
+        }
     }
 }
 

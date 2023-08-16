@@ -19,12 +19,12 @@ impl ClassName for ModalPosition {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
-            ModalPosition::Default => "",
-            ModalPosition::Top => "modal-top",
-            ModalPosition::Middle => "modal-middle",
-            ModalPosition::Bottom => "modal-bottom",
-        })
+        match self {
+            ModalPosition::Default => "".to_string(),
+            ModalPosition::Top => "modal-top".to_string(),
+            ModalPosition::Middle => "modal-middle".to_string(),
+            ModalPosition::Bottom => "modal-bottom".to_string(),
+        }
     }
 }
 

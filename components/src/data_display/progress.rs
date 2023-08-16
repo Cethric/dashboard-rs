@@ -18,10 +18,10 @@ impl ClassName for ProgressColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             ProgressColour::Colour(Colour::Default) => "".to_string(),
             ProgressColour::Colour(color) => format!("progress-{}", color),
-        })
+        }
     }
 }
 

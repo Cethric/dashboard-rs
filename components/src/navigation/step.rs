@@ -18,10 +18,10 @@ impl ClassName for StepOrientation {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             StepOrientation::Orientation(Orientation::Default) => "".to_string(),
             StepOrientation::Orientation(orientation) => format!("step-{}", orientation),
-        })
+        }
     }
 }
 
@@ -44,10 +44,10 @@ impl ClassName for StepColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             StepColour::Colour(Colour::Default) => "".to_string(),
             StepColour::Colour(color) => format!("step-{}", color),
-        })
+        }
     }
 }
 

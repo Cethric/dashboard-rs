@@ -15,10 +15,10 @@ impl ClassName for TextColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             TextColour::Colour(Colour::Default) => "".to_string(),
             TextColour::Colour(color) => format!("text-{}", color),
-        })
+        }
     }
 }
 
@@ -39,12 +39,12 @@ impl ClassName for TextContentColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             TextContentColour::Colour(Colour::Default) => "".to_string(),
             TextContentColour::Colour(colour) => {
                 format!("text-{}", colour.to_content_colour())
             }
-        })
+        }
     }
 }
 

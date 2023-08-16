@@ -18,10 +18,10 @@ impl ClassName for MenuOrientation {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             MenuOrientation::Orientation(Orientation::Default) => "".to_string(),
             MenuOrientation::Orientation(orientation) => format!("menu-{}", orientation),
-        })
+        }
     }
 }
 
@@ -44,10 +44,10 @@ impl ClassName for MenuSize {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             MenuSize::Size(Size::Default) => "".to_string(),
             MenuSize::Size(orientation) => format!("menu-{}", orientation),
-        })
+        }
     }
 }
 

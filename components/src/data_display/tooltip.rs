@@ -19,10 +19,10 @@ impl ClassName for TooltipColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             TooltipColour::Colour(Colour::Default) => "".to_string(),
             TooltipColour::Colour(color) => format!("tooltip-{}", color),
-        })
+        }
     }
 }
 
@@ -46,12 +46,12 @@ impl ClassName for TooltipSide {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             TooltipSide::Top => "tooltip-top".to_string(),
             TooltipSide::Bottom => "tooltip-bottom".to_string(),
             TooltipSide::Left => "tooltip-left".to_string(),
             TooltipSide::Right => "tooltip-right".to_string(),
-        })
+        }
     }
 }
 

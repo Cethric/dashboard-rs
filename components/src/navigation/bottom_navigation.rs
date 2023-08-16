@@ -20,10 +20,10 @@ impl ClassName for BottomNavigationSize {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             BottomNavigationSize::Size(Size::Default) => "".to_string(),
             BottomNavigationSize::Size(size) => format!("btm-nav-{}", size),
-        })
+        }
     }
 }
 

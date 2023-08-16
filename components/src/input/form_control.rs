@@ -18,10 +18,10 @@ impl ClassName for InputColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             InputColour::Colour(Colour::Default) => "".to_string(),
             InputColour::Colour(color) => format!("input-{}", color),
-        })
+        }
     }
 }
 

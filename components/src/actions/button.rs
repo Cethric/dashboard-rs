@@ -21,13 +21,13 @@ impl ClassName for ButtonColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             ButtonColour::Colour(Colour::Default) => "".to_string(),
             ButtonColour::Colour(color) => format!("btn-{}", color),
             ButtonColour::Glass(color) => format!("btn-glass btn-{}", color),
             ButtonColour::Ghost() => "btn-ghost".to_string(),
             ButtonColour::Link() => "btn-link".to_string(),
-        })
+        }
     }
 }
 
@@ -48,10 +48,10 @@ impl ClassName for ButtonSize {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             ButtonSize::Size(Size::Default) => "".to_string(),
             ButtonSize::Size(size) => format!("btn-{}", size),
-        })
+        }
     }
 }
 
@@ -75,10 +75,10 @@ impl ClassName for ButtonShape {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
-            ButtonShape::Square => "btn-square",
-            ButtonShape::Circle => "btn-circle",
-        })
+        match self {
+            ButtonShape::Square => "btn-square".to_string(),
+            ButtonShape::Circle => "btn-circle".to_string(),
+        }
     }
 }
 

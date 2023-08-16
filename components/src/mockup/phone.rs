@@ -1,20 +1,20 @@
 use leptos::*;
 
-use crate::layout::artboard::{Artboard, ArtboardPhone};
+use crate::layout::artboard::{ArtBoard, ArtBoardPhone};
 
 #[component]
 pub fn MockupPhone(
     cx: Scope,
-    #[prop(default = ArtboardPhone::Phone(1))] phone: ArtboardPhone,
+    #[prop(default = ArtBoardPhone::Phone(1))] phone: ArtBoardPhone,
     children: Children,
 ) -> impl IntoView {
     view! {cx,
         <div class="mockup-phone">
             <div class="camera"/>
             <div class="display">
-                <Artboard phone=phone>
+                <ArtBoard phone=phone>
                     {children(cx)}
-                </Artboard>
+                </ArtBoard>
             </div>
         </div>
     }

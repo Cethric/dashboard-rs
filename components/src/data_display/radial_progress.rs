@@ -20,14 +20,14 @@ impl ClassName for RadialProgressColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             RadialProgressColour::Colour(Colour::Default) => "".to_string(),
             RadialProgressColour::Colour(colour) => format!(
                 "{}border-4{}",
                 TextBackgroundColour::Colour(colour),
                 BorderColour::Colour(colour)
             ),
-        })
+        }
     }
 }
 

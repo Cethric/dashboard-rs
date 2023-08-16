@@ -18,10 +18,10 @@ impl ClassName for AlertColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             AlertColour::Colour(Colour::Default) => "".to_string(),
             AlertColour::Colour(color) => format!("alert-{}", color),
-        })
+        }
     }
 }
 

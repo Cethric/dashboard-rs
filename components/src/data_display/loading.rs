@@ -25,7 +25,7 @@ impl ClassName for LoadingVariant {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             LoadingVariant::Default => "".to_string(),
             LoadingVariant::Spinner => "loading-spinner".to_string(),
             LoadingVariant::Dots => "loading-dots".to_string(),
@@ -33,7 +33,7 @@ impl ClassName for LoadingVariant {
             LoadingVariant::Ball => "loading-ball".to_string(),
             LoadingVariant::Bars => "loading-bars".to_string(),
             LoadingVariant::Infinity => "loading-infinity".to_string(),
-        })
+        }
     }
 }
 

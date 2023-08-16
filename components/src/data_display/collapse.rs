@@ -17,11 +17,11 @@ impl ClassName for CollapseIcon {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
-            CollapseIcon::Default => "",
-            CollapseIcon::Arrow => "collapse-arrow",
-            CollapseIcon::Plus => "collapse-plus",
-        })
+        match self {
+            CollapseIcon::Default => "".to_string(),
+            CollapseIcon::Arrow => "collapse-arrow".to_string(),
+            CollapseIcon::Plus => "collapse-plus".to_string(),
+        }
     }
 }
 

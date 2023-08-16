@@ -19,13 +19,13 @@ impl ClassName for DropdownPosition {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
-            DropdownPosition::Default => "",
-            DropdownPosition::Top => "dropdown-top",
-            DropdownPosition::Bottom => "dropdown-bottom",
-            DropdownPosition::Left => "dropdown-left",
-            DropdownPosition::Right => "dropdown-right",
-        })
+        match self {
+            DropdownPosition::Default => "".to_string(),
+            DropdownPosition::Top => "dropdown-top".to_string(),
+            DropdownPosition::Bottom => "dropdown-bottom".to_string(),
+            DropdownPosition::Left => "dropdown-left".to_string(),
+            DropdownPosition::Right => "dropdown-right".to_string(),
+        }
     }
 }
 

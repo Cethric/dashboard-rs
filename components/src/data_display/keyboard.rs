@@ -19,10 +19,10 @@ impl ClassName for KeyboardSize {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             KeyboardSize::Size(Size::Default) => "".to_string(),
             KeyboardSize::Size(size) => format!("kbd-{}", size),
-        })
+        }
     }
 }
 

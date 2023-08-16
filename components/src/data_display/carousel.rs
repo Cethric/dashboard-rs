@@ -75,20 +75,21 @@ pub fn Carousel(
     #[prop(default = CarouselOrientation::Default)] orientation: CarouselOrientation,
     #[prop(default=vec![])] carousel_item: Vec<CarouselItem>,
 ) -> impl IntoView {
-    let indicator_controls = (0..carousel_item.len())
-        .into_iter()
-        .map(|item| view! {cx, <a href=format!("#{}-item-{}", id, item) class="btn btn-xs">{item}</a>})
+    let indicator_controls = carousel_item
+        .iter()
+        .enumerate()
+        .map(|(idx, _)| view! {cx, <a href=format!("#{}-item-{}", id, idx) class="btn btn-xs">{idx}</a>})
         .collect_view(cx);
     let items = carousel_item
         .iter()
-        .zip(0..carousel_item.len())
-        .map(|item|view! {cx,
-            <div class=format!("carousel-item{}", if prev_next {" relative"} else {""}) id=format!("{}-item-{}", id, item.1)>
-                {(item.0.children)(cx).into_view(cx)}
+        .enumerate()
+        .map(|(idx, item)|view! {cx,
+            <div class=format!("carousel-item{}", if prev_next {" relative"} else {""}) id=format!("{}-item-{}", id, idx)>
+                {(item.children)(cx).into_view(cx)}
                 if prev_next {(view!{cx,
                     <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href=format!("#{}-item-{}", id, item.1) class="btn btn-circle">{"<"}</a>
-                        <a href=format!("#{}-item-{}", id, item.1) class="btn btn-circle">{">"}</a>
+                        <a href=format!("#{}-item-{}", id, idx) class="btn btn-circle">{"<"}</a>
+                        <a href=format!("#{}-item-{}", id, idx) class="btn btn-circle">{">"}</a>
                     </div>
                 }).into_view(cx)} else {().into_view(cx)}
             </div>

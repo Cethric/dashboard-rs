@@ -47,10 +47,10 @@ impl ClassName for CardPadding {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
-            CardPadding::Normal => "card-normal",
-            CardPadding::Compact => "card-compact",
-        })
+        match self {
+            CardPadding::Normal => "card-normal".to_string(),
+            CardPadding::Compact => "card-compact".to_string(),
+        }
     }
 }
 
@@ -71,9 +71,9 @@ impl ClassName for CardSide {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
-            CardSide::Side => "card-side",
-        })
+        match self {
+            CardSide::Side => "card-side".to_string(),
+        }
     }
 }
 

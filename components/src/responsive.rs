@@ -96,12 +96,15 @@ where
     T: ClassName + Copy + Clone,
 {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        if self.0.len() == 0 {
+        if self.0.is_empty() {
             return write!(f, "");
         }
         for item in &self.0[0..self.0.len() - 1] {
             if item.has_class_name() {
-                let _ = write!(f, " {}", item.class_name()).expect("Invalid write");
+                debug_assert_eq!(
+                    write!(f, " {}", item.class_name()).is_ok_and(|_| true),
+                    true
+                );
             }
         }
 

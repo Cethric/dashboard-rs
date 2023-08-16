@@ -17,10 +17,10 @@ impl ClassName for TabSize {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             TabSize::Size(Size::Default) => "".to_string(),
-            TabSize::Size(orientation) => format!("menu-{}", orientation),
-        })
+            TabSize::Size(orientation) => format!("tab-{}", orientation),
+        }
     }
 }
 

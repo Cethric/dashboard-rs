@@ -38,10 +38,10 @@ impl ClassName for StatOrientation {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             StatOrientation::Orientation(Orientation::Default) => "".to_string(),
             StatOrientation::Orientation(orientation) => format!("stat-{}", orientation),
-        })
+        }
     }
 }
 

@@ -16,10 +16,10 @@ impl ClassName for LinkColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             LinkColour::Colour(Colour::Default) => "".to_string(),
             LinkColour::Colour(color) => format!("link-{}", color),
-        })
+        }
     }
 }
 

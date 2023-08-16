@@ -17,10 +17,10 @@ impl ClassName for ChatSide {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
-            ChatSide::Start => "chat-start",
-            ChatSide::End => "chat-end",
-        })
+        match self {
+            ChatSide::Start => "chat-start".to_string(),
+            ChatSide::End => "chat-end".to_string(),
+        }
     }
 }
 
@@ -43,10 +43,10 @@ impl ClassName for ChatColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             ChatColour::Colour(Colour::Default) => "".to_string(),
             ChatColour::Colour(color) => format!("chat-{}", color),
-        })
+        }
     }
 }
 

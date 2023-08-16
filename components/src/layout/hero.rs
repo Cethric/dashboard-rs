@@ -23,6 +23,7 @@ pub fn Hero(
         HeroImageStyle::FigureStart(_) => false,
         HeroImageStyle::FigureEnd(_) => false,
     };
+    // todo implement images
     // let imageSrc = match image {
     //     HeroImageStyle::None() => "",
     //     HeroImageStyle::Overlay(src) => src,
