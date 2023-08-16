@@ -2,6 +2,7 @@
 name = "dashboard_rs"
 version = "0.0.0"
 edition = "2021"
+repository = "https://github.com/Cethric/dashboard-rs"
 
 [dependencies]
 leptos = { version = "0.4", features = ["csr", "nightly"] }
@@ -18,6 +19,7 @@ console_error_panic_hook = { version = "0.1", features = [] }
 console_log = { version = "1.0", features = ["color", "wasm-bindgen"] }
 log = { version = "0.4", features = ["serde"] }
 components = { version = "0.1.0", path = "./components", features = [] }
+chrono = { version = "0.4", features = ["serde", "wasmbind", "default"] }
 
 [build-dependencies]
 leptos-tiptap-build = { version = "0.2" }

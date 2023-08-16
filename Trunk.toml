@@ -4,7 +4,7 @@ release = true
 target = "./index.html"
 
 [watch]
-watch = []
+#watch = []
 ignore = ["./src-tauri", "./generated", "./generated/js"]
 
 [tools]

@@ -11,6 +11,40 @@ module.exports = {
     theme: {
         extend: {},
     },
+    safelist: [
+        {
+            pattern: /btn/,
+            variants: ['xs', 'sm', 'md', 'lg', 'xl'],
+        },
+        {
+            pattern: /btm-nav/,
+            variants: ['xs', 'sm', 'md', 'lg', 'xl'],
+        },
+        {
+            pattern: /navbar/,
+            variants: ['xs', 'sm', 'md', 'lg', 'xl'],
+        },
+        {
+            pattern: /badge/,
+            variants: ['xs', 'sm', 'md', 'lg', 'xl'],
+        },
+        {
+            pattern: /alert/,
+            variants: ['xs', 'sm', 'md', 'lg', 'xl'],
+        },
+        {
+            pattern: /drawer/,
+            variants: ['xs', 'sm', 'md', 'lg', 'xl'],
+        },
+        {
+            pattern: /text-./,
+            variants: ['xs', 'sm', 'md', 'lg', 'xl'],
+        },
+        {
+            pattern: /bg-./,
+            variants: ['xs', 'sm', 'md', 'lg', 'xl'],
+        },
+    ],
     plugins: [
         require('daisyui'),
         require('@tailwindcss/typography'),
