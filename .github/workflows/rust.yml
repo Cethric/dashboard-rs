@@ -50,8 +50,11 @@ jobs:
           tool: tauri-cli
 
       # Build
+      - name: Cargo Build
+        run: cargo build --release
+
       - name: Tauri Build
-        run: cargo tauri build
+        run: cargo tauri build --ci
 
       # Test
       - name: Run component tests

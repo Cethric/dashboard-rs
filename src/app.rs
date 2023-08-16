@@ -77,7 +77,7 @@ pub fn Clock(cx: Scope) -> impl IntoView {
         1000,
     );
 
-    view! {cx
+    view! {cx,
         <div>
             <Countdown value=MaybeSignal::Dynamic(current_time.day.0.derive_signal(cx)) />
             <span>/</span>
