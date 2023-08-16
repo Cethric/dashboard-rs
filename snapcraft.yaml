@@ -1,9 +1,16 @@
 name: dashboard-rs
-parts:
-  dashboard-rs:
-summary:
-  Rust Home Dashboard Frontend
+summary: Rust Home Dashboard Frontend
 description:
   The kiosk dashboard frontend for the Home Dashboard
+base: core22
+confinement: strict
+parts:
+  dashboard-rs:
+    plugin: rust
+    source: .
+
+apps:
+  dashboard-rs:
+    command: 'bin/dashboard_app_rs'
 type: app
-version: 0.1.0
+version: git
