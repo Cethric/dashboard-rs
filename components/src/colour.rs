@@ -34,7 +34,7 @@ pub enum Colour {
 }
 
 impl Colour {
-    pub(crate) fn to_content_colour(&self) -> Colour {
+    pub(crate) fn content_colour(&self) -> Colour {
         match self {
             Colour::Default => Colour::Default,
             Colour::Primary => Colour::PrimaryContent,
@@ -110,12 +110,10 @@ impl ClassName for BorderColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             BorderColour::Colour(Colour::Default) => "".to_string(),
             BorderColour::Colour(color) => format!("border-{}", color),
-            // BorderColour::Colour(Colour::Ghost) => {}
-            // BorderColour::Colour(Colour::Link) => {}
-        })
+        }
     }
 }
 

@@ -43,11 +43,11 @@ pub fn RadialProgress(
     #[prop(default=RadialProgressColour::Colour(Colour::Default))] colour: RadialProgressColour,
     #[prop(default = SizeUnit::Em(4.0))] size: SizeUnit,
     #[prop(default = SizeUnit::Em(0.4))] thickness: SizeUnit,
-    progress: ReadSignal<i32>,
+    progress: MaybeSignal<i32>,
 ) -> impl IntoView {
     assert!(progress.get() >= 0 && progress.get() <= 100);
     view! {cx,
-        <div class=format!("progress{}", colour) style=format!("--value:{}; --size:{}; --thickness:{};", progress.get(), size, thickness)>
+        <div class=format!("progress{}", colour) style=move || format!("--value:{}; --size:{}; --thickness:{};", progress.get(), size, thickness)>
             {format!("{}%", progress.get())}
         </div>
     }

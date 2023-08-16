@@ -15,7 +15,7 @@ impl ClassName for TextBackgroundColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             TextBackgroundColour::Colour(Colour::Default) => "".to_string(),
             TextBackgroundColour::Colour(colour) => {
                 format!(
@@ -24,7 +24,7 @@ impl ClassName for TextBackgroundColour {
                     TextContentColour::Colour(colour)
                 )
             }
-        })
+        }
     }
 }
 

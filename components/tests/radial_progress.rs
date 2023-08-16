@@ -21,7 +21,7 @@ mod tests {
     pub fn test_radial_progress_colour(colour: RadialProgressColour) {
         create_scope(create_runtime(), move |cx| {
             let (value,_) = create_signal(cx, 10);
-            let view = view! {cx, <RadialProgress colour=colour progress=value/>};
+            let view = view! {cx, <RadialProgress colour=colour progress=MaybeSignal::Dynamic(value.into())/>};
             assert_eq!(
                 view.render_to_string(cx),
                 format!(

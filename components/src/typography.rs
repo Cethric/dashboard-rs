@@ -42,7 +42,7 @@ impl ClassName for TextContentColour {
         match self {
             TextContentColour::Colour(Colour::Default) => "".to_string(),
             TextContentColour::Colour(colour) => {
-                format!("text-{}", colour.to_content_colour())
+                format!("text-{}", colour.content_colour())
             }
         }
     }

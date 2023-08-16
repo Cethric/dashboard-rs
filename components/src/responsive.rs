@@ -101,10 +101,7 @@ where
         }
         for item in &self.0[0..self.0.len() - 1] {
             if item.has_class_name() {
-                debug_assert_eq!(
-                    write!(f, " {}", item.class_name()).is_ok_and(|_| true),
-                    true
-                );
+                debug_assert!(write!(f, " {}", item.class_name()).is_ok_and(|_| true));
             }
         }
 

@@ -56,10 +56,10 @@ impl ClassName for LoadingSize {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             LoadingSize::Size(Size::Default) => "".to_string(),
             LoadingSize::Size(size) => format!("loading-{}", size),
-        })
+        }
     }
 }
 
