@@ -4,6 +4,8 @@ description:
   The kiosk dashboard frontend for the Home Dashboard
 base: core22
 confinement: strict
+architectures:
+  - amd64
 parts:
   rust-deps:
     plugin: nil
