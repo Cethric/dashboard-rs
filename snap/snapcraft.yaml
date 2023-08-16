@@ -61,11 +61,12 @@ parts:
       craftctl default
       cargo install trunk
       cargo install tauri-cli
-      cargo tauri build
+      cargo build --release
+      cargo tauri build --ci
     override-build: |
       PATH=~/.cargo/bin:${PATH}
       craftctl default
-      cargo tauri build
+      cargo test --package components
 
   dashboard-app:
     plugin: dump
