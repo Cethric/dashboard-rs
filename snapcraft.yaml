@@ -29,19 +29,20 @@ parts:
       - libsoup-3.0-dev
       - libjavascriptcoregtk-4.1-dev
     stage-packages:
-      - libgtk-3
-      - libwebkit2gtk-4.1
-      - libayatana-appindicator3
-      - librsvg2
-      - libsoup-3.0
-      - libjavascriptcoregtk-4.1
+      - libgtk-3-0
+      - libwebkit2gtk-4.1-0
+      - libayatana-appindicator3-1
+      - librsvg2-2
+      - libsoup-3.0-0
+      - libjavascriptcoregtk-4.1-0
     override-build: snapcraftctl build
 
 apps:
   dashboard-rs:
-    plugs: [ desktop, desktop-legacy, gsettings, opengl, wayland, x11, mount-observe, calendar-service]
+    plugs: [ desktop, gsettings, opengl, wayland, x11, mount-observe, calendar-service ]
     extensions:
       - gnome
     command: 'bin/dashboard_app_rs'
+
 type: app
 version: git
