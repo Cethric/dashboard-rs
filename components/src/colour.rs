@@ -134,10 +134,10 @@ impl ClassName for BackgroundColour {
     }
 
     fn class_name(self) -> String {
-        String::from(match self {
+        match self {
             BackgroundColour::Colour(Colour::Default) => "".to_string(),
             BackgroundColour::Colour(color) => format!("bg-{}", color),
-        })
+        }
     }
 }
 
