@@ -30,7 +30,9 @@ parts:
     plugin: nil
     build-packages:
       - curl
-    override-pull: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    override-pull: |
+      craftctl default
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   dashboard-build:
     plugin: rust
     source: .
@@ -55,11 +57,13 @@ parts:
       - libsoup-3.0-0
       - libjavascriptcoregtk-4.1-0
     override-pull: |
-      snapcraftctl pull
+      PATH=~/.cargo/bin:${PATH}
+      craftctl default
       cargo install trunk
       cargo install tauri-cli
     override-build: |
-      snapcraftctl build
+      PATH=~/.cargo/bin:${PATH}
+      craftctl default
       cargo tauri build
 
   dashboard-app:
