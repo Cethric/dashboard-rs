@@ -61,6 +61,7 @@ parts:
       craftctl default
       cargo install trunk
       cargo install tauri-cli
+      cargo tauri build
     override-build: |
       PATH=~/.cargo/bin:${PATH}
       craftctl default
