@@ -1,0 +1,9 @@
+name: dashboard-rs
+parts:
+  dashboard-rs:
+summary:
+  Rust Home Dashboard Frontend
+description:
+  The kiosk dashboard frontend for the Home Dashboard
+type: app
+version: 0.1.0
