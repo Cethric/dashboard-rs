@@ -47,32 +47,27 @@ pub fn Clock(cx: Scope) -> impl IntoView {
         cx,
         move || {
             let current = Local::now();
-            current_time.day.1.set(
-                i32::try_from(current.day())
-                    .ok()
-                    .expect("invalid conversion from u32 to i32"),
-            );
-            current_time.month.1.set(
-                i32::try_from(current.month())
-                    .ok()
-                    .expect("invalid conversion from u32 to i32"),
-            );
+            current_time
+                .day
+                .1
+                .set(i32::try_from(current.day()).expect("invalid conversion from u32 to i32"));
+            current_time
+                .month
+                .1
+                .set(i32::try_from(current.month()).expect("invalid conversion from u32 to i32"));
             current_time.year.1.set(current.year() - 2000);
-            current_time.hour.1.set(
-                i32::try_from(current.hour())
-                    .ok()
-                    .expect("invalid conversion from u32 to i32"),
-            );
-            current_time.minute.1.set(
-                i32::try_from(current.minute())
-                    .ok()
-                    .expect("invalid conversion from u32 to i32"),
-            );
-            current_time.second.1.set(
-                i32::try_from(current.second())
-                    .ok()
-                    .expect("invalid conversion from u32 to i32"),
-            );
+            current_time
+                .hour
+                .1
+                .set(i32::try_from(current.hour()).expect("invalid conversion from u32 to i32"));
+            current_time
+                .minute
+                .1
+                .set(i32::try_from(current.minute()).expect("invalid conversion from u32 to i32"));
+            current_time
+                .second
+                .1
+                .set(i32::try_from(current.second()).expect("invalid conversion from u32 to i32"));
         },
         1000,
     );
