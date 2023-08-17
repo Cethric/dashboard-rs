@@ -33,25 +33,20 @@ parts:
     override-pull: |
       craftctl default
       curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-      source ~/.bashrc
+      PATH=~/.cargo/bin:${PATH}
       cargo install trunk
       cargo install tauri-cli
-  node-deps:
-    plugin: nil
-    build-packages:
-      - curl
-    override-pull: |
-      craftctl default
-      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-      source ~/.bashrc
-      nvm install --lts
-      nvm use --lts
+  node:
+    plugin: npm
+    npm-include-node: true
+    npm-node-version: 18
+    source: .
   dashboard-build:
     plugin: rust
     source: .
     after:
       - rust-deps
-      - node-deps
+      - node
     stage-snaps:
       - ubuntu-frame
     build-packages:
@@ -72,14 +67,11 @@ parts:
       - libjavascriptcoregtk-4.1-0
     override-pull: |
       PATH=~/.cargo/bin:${PATH}
-      source ~/.bashrc
       craftctl default
-      npm i
       cargo build --release
       cargo tauri build --ci
     override-build: |
       PATH=~/.cargo/bin:${PATH}
-      source ~/.bashrc
       craftctl default
       cargo test --package components
 
