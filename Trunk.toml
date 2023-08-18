@@ -4,8 +4,8 @@ release = true
 target = "./index.html"
 
 [watch]
-#watch = []
-ignore = ["./src-tauri", "./generated"]
+watch = ["./components/src", "./src"]
+ignore = ["./src-tauri"]
 
 [tools]
 # Default dart-sass version to download.

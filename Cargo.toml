@@ -6,10 +6,9 @@ repository = "https://github.com/Cethric/dashboard-rs"
 
 [dependencies]
 leptos = { version = "0.4", features = ["csr", "nightly"] }
-leptos_icons = { version = "0.0.15", features = ["serde", "macros", "BsGithub", "BsPower"] }
+leptos_icons = { version = "0.0.15", features = ["serde", "macros", "BsGithub", "BsPower", "BsHouseDoor", "LuBed", "RiKnifeBloodOthersLine", "RiComputerDeviceLine", "LuShirt", "ImSpoonKnife", "LuSofa", "BsLamp"] }
 leptos-use = { version = "0.6", features = ["serde"] }
 leptos_router = { version = "0.4", features = ["csr"] }
-stylers = { git = "https://github.com/abishekatp/stylers", branch = "main", package = "stylers", features = [] }
 serde = { version = "1.0", features = ["derive"] }
 serde-wasm-bindgen = { version = "0.5", features = [] }
 wasm-bindgen = { version = "0.2", features = ["serde-serialize", "serde"] }
@@ -20,9 +19,6 @@ console_log = { version = "1.0", features = ["color", "wasm-bindgen"] }
 log = { version = "0.4", features = ["serde"] }
 components = { version = "0.1.0", path = "./components", features = [] }
 chrono = { version = "0.4", features = ["serde", "wasmbind", "default"] }
-
-[build-dependencies]
-leptos-tiptap-build = { version = "0.2" }
 
 [workspace]
 members = ["src-tauri", "components"]

@@ -6,6 +6,7 @@ base: core22
 type: app
 version: git
 confinement: strict
+compression: lzo
 architectures:
   - amd64
 
@@ -26,30 +27,13 @@ layout:
     symlink: $SNAP/graphics/X11/locale
 
 parts:
-  rust-deps:
+  dashboard-app:
     plugin: nil
-    build-packages:
-      - curl
-    override-pull: |
-      craftctl default
-      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-      PATH=~/.cargo/bin:${PATH}
-      cargo install trunk
-      cargo install tauri-cli
-  node:
-    plugin: npm
-    npm-include-node: true
-    npm-node-version: 18
     source: .
-  dashboard-build:
-    plugin: rust
-    source: .
-    after:
-      - rust-deps
-      - node
     stage-snaps:
       - ubuntu-frame
     build-packages:
+      - curl
       - build-essential
       - pkg-config
       - libgtk-3-dev
@@ -66,22 +50,34 @@ parts:
       - libsoup-3.0-0
       - libjavascriptcoregtk-4.1-0
     override-pull: |
-      PATH=~/.cargo/bin:${PATH}
       craftctl default
+      echo "Install Node"
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+      source ~/.bashrc
+      echo "Install Cargo"
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      PATH=~/.cargo/bin:${PATH}
+      echo "Install Dependencies"
+      echo "Cargo Dependencies"
+      cargo install trunk
+      cargo install tauri-cli
+      echo "Node Dependencies"
+      nvm install --lts
       npm i
-      cargo build --release
-      cargo tauri build --ci
     override-build: |
-      PATH=~/.cargo/bin:${PATH}
       craftctl default
+      PATH=~/.cargo/bin:${PATH}
+      cargo tauri build --ci -- --out-dir $CRAFT_PART_INSTALL
       cargo test --package components
-
-  dashboard-app:
-    plugin: dump
-    source-type: deb
-    source: target/release/bundle/deb/dashboard-rs_0.0.0_amd64.deb
-    after:
-      - dashboard-build
+    override-stage:
+      ls -la ./
+      craftctl default
+    stage:
+      - target/release/bundle/deb/dashboard-rs_0.0.0_amd64/
+    prime:
+      - target/release/bundle/deb/dashboard-rs_0.0.0_amd64/usr/bin/dashboard-rs
+      - target/release/bundle/deb/dashboard-rs_0.0.0_amd64/usr/share/applications/dashboard-rs.desktop
+      - target/release/bundle/deb/dashboard-rs_0.0.0_amd64/usr/share/icons/hicolor/**/apps/dashboard-rs.png
 
   graphics-core22:
     after: [ dashboard-app ]

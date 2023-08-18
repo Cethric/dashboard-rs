@@ -10,4 +10,5 @@ rustflags = ["--cfg=web_sys_unstable_apis"]
 #rustflags = ["-C", "target-feature=+mutable-globals", "--cfg=web_sys_unstable_apis"]
 
 [unstable]
+unstable-options = true
 #build-std = []
