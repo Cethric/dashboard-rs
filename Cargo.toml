@@ -10,7 +10,7 @@ leptos_icons = { version = "0.0.15", features = ["serde", "macros", "BsGithub", 
 leptos-use = { version = "0.6", features = ["serde"] }
 leptos_router = { version = "0.4", features = ["csr"] }
 serde = { version = "1.0", features = ["derive"] }
-serde-wasm-bindgen = { version = "0.5", features = [] }
+serde-wasm-bindgen = { version = "0.6", features = [] }
 wasm-bindgen = { version = "0.2", features = ["serde-serialize", "serde"] }
 wasm-bindgen-futures = { version = "0.4", features = [] }
 js-sys = { version = "0.3", features = [] }
