@@ -5,7 +5,7 @@ edition = "2021"
 repository = "https://github.com/Cethric/dashboard-rs"
 
 [dependencies]
-leptos = { version = "0.4", features = ["csr", "nightly"] }
+leptos = { version = "0.5", features = ["csr", "nightly"] }
 leptos_icons = { version = "0.0.15", features = ["serde", "macros", "BsGithub", "BsPower", "BsHouseDoor", "LuBed", "RiKnifeBloodOthersLine", "RiComputerDeviceLine", "LuShirt", "ImSpoonKnife", "LuSofa", "BsLamp"] }
 leptos-use = { version = "0.6", features = ["serde"] }
 leptos_router = { version = "0.4", features = ["csr"] }

@@ -7,7 +7,7 @@ repository = "https://github.com/Cethric/dashboard-rs"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-leptos = { version = "0.4", features = ["csr", "nightly", "wasm-bindgen"] }
+leptos = { version = "0.5", features = ["csr", "nightly", "wasm-bindgen"] }
 leptos_reactive = { version = "0.4", features = ["csr", "nightly"] }
 leptos_icons = { version = "0.0.15", features = ["serde", "macros", "BsGithub", "BsPower"] }
 leptos-use = { version = "0.6", features = ["serde"] }
